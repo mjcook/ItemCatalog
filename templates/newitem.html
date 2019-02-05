@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/static/style.css">
+        <title>New Item</title>
+    </head>
+    <body>
+        <div id=container>
+            <div id=pagetitle>
+                <h1>New Item</h1>
+            </div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div id=flashmessage>
+                       {{messages[-1]}}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            <div id=contentcontrols>
+                <form action="{{url_for('newItem', category_id = category.id)}}", method='POST'>
+                    <b><p>Title:</p></b>
+                    <input type='text', size='30', name='title'>
+                    <b><p>Description:</p></b>
+                    <input type='text', size='150', name='description'>
+                    <br/><br/>
+                    <div id=contentcontrols>
+                        <input class=controlbutton type='submit', value='Create'>
+                        <button class=controlbutton type="button" onclick="window.location.href='{{url_for('getCategory', category_id = category.id)}}';">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

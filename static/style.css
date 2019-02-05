@@ -1,0 +1,85 @@
+body    {
+    background-color: #eaede5;
+    margin: 1rem;
+}
+
+#container{
+    background-color: #445366;
+    padding: .8rem;
+    margin: .6rem;
+}
+
+#pagetitle {
+    background-color: #778295;
+    padding: .4rem .8rem .4rem 6rem;
+    margin: inherit;
+    text-align: left;
+    vertical-align: center;
+    color: #eaede5;
+    font-size: 1.5rem;
+}
+
+#pagecontrols {
+    background-color: #778295;
+    padding: .4rem .8rem .4rem 6rem;
+    margin: inherit;
+    text-align: left;
+    vertical-align: center;
+    font-size: .8rem;
+    margin: inherit;
+}
+
+.controlbutton {
+    font-size: inherit;
+    padding: .4rem .5rem;
+    margin: .2rem .4rem;
+    background-color: #778295;
+    color: #eaede5;
+    border: 0rem;
+}
+
+#flashmessage {
+    background-color: #778295;
+    padding: inherit;
+    margin: inherit;
+    text-align: center;
+    vertical-align: center;
+}
+
+#contenttitle {
+    background-color: #778295;
+    color: #eaede5;
+    padding: inherit;
+    margin: inherit;
+    font-size: 1.2rem;
+    text-align: center;
+    vertical-align: center;
+}
+
+#contentcontrols {
+    background-color: #778295;
+    color: #eaede5;
+    padding: inherit;
+    margin: inherit;
+    text-align: center;
+    vertical-align: center;
+}
+
+#contentobjects {
+    background-color: #778295;
+    color: #eaede5;
+    padding: inherit;
+    margin: inherit;
+    text-align: center;
+    vertical-align: center;
+}
+
+#contentobject {
+    background-color: inherit;
+    color: inherit;
+    padding: 0rem;
+    margin: .2rem;
+    font-size: 1.2rem;
+    text-align: center;
+    vertical-align: center;
+}

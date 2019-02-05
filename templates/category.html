@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/static/style.css">
+        <title>{{category.name}}</title>
+    </head>
+    <body>
+        <div id=container>
+            <div id=pagetitle>
+                <h1>{{category.name}}</h1>
+            </div>
+            <div id=pagecontrols>
+                {% if ('username' in session) %}
+                    <button class=controlbutton type="button" formmethod="post" onclick="window.location.href='{{url_for('logout')}}';">Logout</button>
+                {% else %}
+                    <button class=controlbutton type="button" onclick="window.location.href='{{url_for('login')}}';">Login</button>
+                    <button class=controlbutton type="button" onclick="window.location.href='{{url_for('newUser')}}';">New User</button>
+                {% endif %}
+                <button class=controlbutton type="button" onclick="window.location.href='{{url_for('getCatalog')}}';">Return to Catalog</button>
+            </div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div id=flashmessage>
+                        {{messages[-1]}}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            {% if ('username' in session) %}
+                {% if (category.user_id == session['id']) %}
+                    <div id=contentcontrols>
+                        <button class=controlbutton type="button" onclick="window.location.href='{{url_for('newItem', category_id = category.id)}}';">Create New Item</button>
+                        <button class=controlbutton type="button" onclick="window.location.href='{{url_for('editCategory', category_id = category.id)}}';">Edit {{category.name}}</button>
+                        <button class=controlbutton type="button" onclick="window.location.href='{{url_for('deleteCategory', category_id = category.id)}}';">Delete {{category.name}}</button>
+                    </div>
+                {% endif %}
+            {% endif %}
+            <div id=contentobjects>
+                {% if items %}
+                    {% for item in items %}
+                        <div id=contentobject>
+                            <h3><a href = "{{url_for('getItem', category_id = category.id, item_id = item.id)}}">{{item.title}}</a></h3>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div id=contentobject>
+                        <h3>You currently have no category items</h3>
+                    </div> 
+                {% endif %}
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/static/style.css">
+        <title>Delete {{category.name}}</title>
+    </head>
+    <body>
+        <div id=container>
+            <div id=pagetitle>
+                <h1>Delete {{category.name}}</h1>
+            </div>
+            <div id=contentcontrols>
+                <form action="{{url_for('deleteCategory', category_id = category.id)}}", method='POST'>
+                    <div id=contentcontrols>
+                        <input class=controlbutton type='submit', value='Delete'>
+                        <button class=controlbutton type="button" onclick="window.location.href='{{url_for('getCategory', category_id = category.id)}}';">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

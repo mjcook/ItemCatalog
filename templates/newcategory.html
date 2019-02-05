@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="/static/style.css">
+		<title>New Category</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	</head>
+    <body>
+		<div id=container>
+			<div id=pagetitle>
+				<h1>New Category</h1>
+			</div>
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+					<div id=flashmessage>
+						{{messages[-1]}}
+					</div>
+				{% endif %}
+			{% endwith %}
+			<div id=contentcontrols>
+        		<form action="{{url_for('newCategory')}}", method='POST'>
+					<b><p>Name:</p></b>
+					<input type='text', size='30', name='name'>
+					<br/><br/>
+                    <div id=contentcontrols>
+						<input class=controlbutton type='submit', value='Create'>
+                        <button class=controlbutton type="button" onclick="window.location.href='{{url_for('getCatalog')}}';">Cancel</button>
+                    </div>
+				</form>
+			</div>
+		</div>
+    </body>
+</html>

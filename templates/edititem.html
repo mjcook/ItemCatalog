@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/static/style.css">
+        <title>Edit {{item.title}}</title>
+    </head>
+    <body>
+        <div id=container>
+            <div id=pagetitle>
+                <h1>Edit {{item.title}}</h1>
+            </div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div id=flashmessage>
+                        {{messages[-1]}}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            <div id=contentcontrols>
+                <form action="{{url_for('editItem', category_id = item.cat_id, item_id = item.id)}}", method='POST'>
+                    <b><p>Title:</p></b>
+                    <input type='text', size='30', name='title', value='{{item.title}}'>
+                    <b><p>Description:</p></b>
+                    <input type='text', size='150', name='description', value='{{item.description}}'>
+                    <br/><br/>
+                    <div id=contentcontrols>
+                        <input class=controlbutton type='submit', value='Update'>
+                        <button class=controlbutton type="button" onclick="window.location.href='{{url_for('getItem', category_id = item.cat_id, item_id = item.id)}}';">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </body>
+</html>

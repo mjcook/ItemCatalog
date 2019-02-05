@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/static/style.css">
+        <title>New User</title>
+    </head>
+    <body>
+        <div id=container>
+            <div id=pagetitle>
+                <h1>New Login Details</h1>
+            </div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div id=flashmessage>
+                        {{messages[-1]}}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            <div id=contentcontrols>
+                <form action="{{url_for('newUser')}}", method='POST'>
+                    <b><p>Username:</p></b>
+                    <input type='text', size='30', name='username'>
+                    <b><p>Email:</p></b>
+                    <input type="text" size='30', name='email'>
+                    <b><p>Password:</p></b>
+                    <input type="password" size='30', name='password'>
+                    <br/><br/>
+                    <div id=contentcontrols>
+                        <input class=controlbutton type='submit', value='Submit'>
+                        <button class=controlbutton type="button" onclick="window.location.href='{{url_for('getCatalog')}}';">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
