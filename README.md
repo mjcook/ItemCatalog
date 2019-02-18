@@ -76,6 +76,8 @@ The following output should be generated
 
 In your broswer, navigate to http://localhost:5000
 
+NOTE LOGIN USING GOOGLE REQUIRES CLIENT_SECRETS.JSON FROM GOOGLE WHICH WAS REMOVED FROM THIS REPO FOR PRIVACY REASONS
+
 From here you can do the following:
 
 1) Login using your google account or create new users in order to log in
