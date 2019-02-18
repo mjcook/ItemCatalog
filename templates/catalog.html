@@ -8,31 +8,31 @@
         <div id=container>
             <div id=pagetitle>
                 <h1>Catalog</h1>
-            </div>
-            <div id=pagecontrols>
-                {% if ('username' in session) %}
-                    <button class=controlbutton type="button" formmethod="post" onclick="window.location.href='{{url_for('logout')}}';">Logout</button>
-                {% else %}
-                    <button class=controlbutton type="button" onclick="window.location.href='{{url_for('login')}}';">Login</button>
-                    <button class=controlbutton type="button" onclick="window.location.href='{{url_for('newUser')}}';">New User</button>
-                {% endif %}
-            </div>
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    <div id=flashmessage>
-                        {{messages[-1]}}
-                    </div>
-			    {% endif %}
-		    {% endwith %}
-            <div id=contenttitle>
-                <h2>Categories</h2>
-            </div>
-            {% if ('username' in session) %}
-                <div id=contentcontrols>
-                    <button class=controlbutton type="button" onclick="window.location.href='{{url_for('newCategory')}}';">Create New Category</button>
+                <div id=pagecontrols>
+                    {% if ('username' in session) %}
+                        <button class=controlbutton type="button" formmethod="post" onclick="window.location.href='{{url_for('logout')}}';">Logout</button>
+                    {% else %}
+                        <button class=controlbutton type="button" onclick="window.location.href='{{url_for('login')}}';">Login</button>
+                        <button class=controlbutton type="button" onclick="window.location.href='{{url_for('newUser')}}';">New User</button>
+                    {% endif %}
                 </div>
-            {% endif %}
+            </div>
             <div id=contentobjects>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div id=flashmessage>
+                            {{messages[-1]}}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                <div id=contenttitle>
+                    <h2>Categories</h2>
+                </div>
+                {% if ('username' in session) %}
+                    <div id=contentcontrols>
+                        <button class=controlbutton type="button" onclick="window.location.href='{{url_for('newCategory')}}';">Create New Category</button>
+                    </div>
+                {% endif %}
                 {% if categories %}
                     {% for category in categories %}
                         <div id=contentobject>

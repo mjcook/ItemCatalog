@@ -9,14 +9,14 @@
             <div id=pagetitle>
                 <h1>New Item</h1>
             </div>
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    <div id=flashmessage>
-                       {{messages[-1]}}
-                    </div>
-                {% endif %}
-            {% endwith %}
             <div id=contentcontrols>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div id=flashmessage>
+                           {{messages[-1]}}
+                        </div>
+                    {% endif %}
+                {% endwith %}
                 <form action="{{url_for('newItem', category_id = category.id)}}", method='POST'>
                     <b><p>Title:</p></b>
                     <input type='text', size='30', name='title'>

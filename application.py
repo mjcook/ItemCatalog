@@ -17,7 +17,7 @@ import requests
 app = Flask(__name__, static_url_path='/static')
 CLIENT_SECRETS = json.loads(open('client_secrets.json', 'r').read())
 CLIENT_ID = CLIENT_SECRETS['web']['client_id']
-engine = create_engine('postgresql:///catalog.db')
+engine = create_engine('sqlite:///catalog.db')
 Base.metadata.bind = engine
 DBsession = sessionmaker(bind=engine)
 session = DBsession()
@@ -112,11 +112,11 @@ def deleteCategory(category_id):
     if(request.method == 'GET'):
         return render_template('deletecategory.html', category=category)
     if(request.method == 'POST'):
-        session.delete(category)
         items = session.query(Item).filter_by(cat_id=category_id).all()
         if (items is not None):
             for item in items:
                 session.delete(item)
+        session.delete(category)
         session.commit()
         flash(category.name + ''' category has been deleted
              along with all items''')
@@ -206,7 +206,7 @@ def deleteItem(category_id, item_id):
         return redirect(url_for('getItem', category_id=category_id,
                                 item_id=item_id))
     if(request.method == 'GET'):
-        return render_template('deleteItem.html', item=item)
+        return render_template('deleteitem.html', item=item)
     if(request.method == 'POST'):
         session.delete(item)
         session.commit()

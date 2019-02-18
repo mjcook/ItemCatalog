@@ -8,32 +8,32 @@
         <div id=container>
             <div id=pagetitle>
                 <h1>{{item.title}}</h1>
+                <div id=pagecontrols>
+                    {% if ('username' in session) %}
+                        <button class=controlbutton type="button" formmethod="post" onclick="window.location.href='{{url_for('logout')}}';">Logout</button>
+                    {% else %}
+                        <button class=controlbutton type="button" onclick="window.location.href='{{url_for('login')}}';">Login</button>
+                        <button class=controlbutton type="button" onclick="window.location.href='{{url_for('newUser')}}';">New User</button>
+                    {% endif %}
+                    <button class=controlbutton type="button" onclick="window.location.href='{{url_for('getCategory', category_id = category.id)}}';">Return to {{category.name}}</button>
+                </div>
             </div>
-            <div id=pagecontrols>
-                {% if ('username' in session) %}
-                    <button class=controlbutton type="button" formmethod="post" onclick="window.location.href='{{url_for('logout')}}';">Logout</button>
-                {% else %}
-                    <button class=controlbutton type="button" onclick="window.location.href='{{url_for('login')}}';">Login</button>
-                    <button class=controlbutton type="button" onclick="window.location.href='{{url_for('newUser')}}';">New User</button>
-                {% endif %}
-                <button class=controlbutton type="button" onclick="window.location.href='{{url_for('getCategory', category_id = category.id)}}';">Return to {{category.name}}</button>
-            </div>
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    <div id=flashmessage>
-                        {{messages[-1]}}
-                    </div>
-                {% endif %}
-            {% endwith %}
-            {% if ('username' in session) %}
-                {% if (category.user_id == session['id']) %}
-                    <div id=contentcontrols>
-                        <button class=controlbutton type="button" onclick="window.location.href='{{url_for('editItem', category_id = item.cat_id, item_id = item.id)}}';">Edit {{item.title}}</button>
-                        <button class=controlbutton type="button" onclick="window.location.href='{{url_for('deleteItem', category_id = item.cat_id, item_id = item.id)}}';">Delete {{item.title}}</button>
-                    </div>
-                {% endif %}
-            {% endif %}
             <div id=contentobjects>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div id=flashmessage>
+                            {{messages[-1]}}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                {% if ('username' in session) %}
+                    {% if (category.user_id == session['id']) %}
+                        <div id=contentcontrols>
+                            <button class=controlbutton type="button" onclick="window.location.href='{{url_for('editItem', category_id = item.cat_id, item_id = item.id)}}';">Edit {{item.title}}</button>
+                            <button class=controlbutton type="button" onclick="window.location.href='{{url_for('deleteItem', category_id = item.cat_id, item_id = item.id)}}';">Delete {{item.title}}</button>
+                        </div>
+                    {% endif %}
+                {% endif %}
                 {% if item.description %}
                     <div id=contentobject>
                         <h3>{{item.description}}</h3>
